@@ -1,0 +1,455 @@
+/* ===========================================================================
+   Hifazat Vault — site styles
+
+   Built from the app's real design tokens (lib/theme/app_theme.dart), not an
+   approximation: the same ink, the same aurora mint, the same four section
+   gradients, the same glass surfaces and 2xl radii.
+
+   Zero external requests. Sora is self-hosted and subset to 34 KB — loading
+   the brand font from fonts.gstatic.com would quietly break the "no third
+   parties" claim on the very page that explains it, which is exactly the
+   mistake the app itself had to fix.
+   ========================================================================= */
+
+@font-face {
+  font-family: "Sora";
+  src: url("fonts/sora.woff2") format("woff2-variations");
+  font-weight: 100 800;
+  font-display: swap;
+}
+
+:root {
+  /* Straight from AppColors. */
+  --ink:        #050E11;
+  --mint:       #3EF2A4;   /* cyan role — primary accent */
+  --petrol:     #1899B8;   /* blue role */
+  --violet:     #7C5CFF;
+  --pink:       #FF5C8A;
+  --gold:       #F7C24D;
+  --ember:      #F0603F;
+  --ice:        #54B9FF;
+  --sky:        #2E7BD6;
+  --mint-soft:  #59F0C0;
+
+  --text:   #EAF6F2;
+  --text-2: #8FAFA8;
+  --text-3: #6E8B85;
+
+  --glass:        rgba(255, 255, 255, .06);
+  --glass-strong: rgba(255, 255, 255, .09);
+  --border:       rgba(255, 255, 255, .16);
+  --border-soft:  rgba(255, 255, 255, .08);
+
+  /* Aurora blob colours, from the 'aurora' palette. */
+  --blob-a: #3EF2A4;
+  --blob-b: #0E7D8A;
+  --blob-c: #7C5CFF;
+
+  --cta-1: #19C97F;
+  --cta-2: #0E9E9E;
+
+  --wrap: 1080px;
+  --r-lg: 22px;
+  --r-md: 16px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--text);
+  font-family: "Sora", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ---- aurora field ---------------------------------------------------------
+   Three soft blobs, heavily blurred, fixed behind everything — the same
+   device the app uses for its background. Kept low-opacity so text contrast
+   never depends on where a blob happens to land. */
+.aurora {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+  pointer-events: none;
+}
+.aurora span {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: .30;
+}
+.blob-a { width: 46rem; height: 46rem; top: -16rem; left: -12rem; background: var(--blob-a); }
+.blob-b { width: 40rem; height: 40rem; top: 4rem;  right: -14rem; background: var(--blob-b); opacity: .38; }
+.blob-c { width: 34rem; height: 34rem; bottom: -14rem; left: 30%;  background: var(--blob-c); opacity: .20; }
+
+/* A faint grain/vignette so the flat ink doesn't band on cheap panels. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(120% 80% at 50% 0%, transparent 40%, rgba(0,0,0,.55) 100%);
+}
+
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
+
+/* ---- header --------------------------------------------------------------- */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  background: rgba(5, 14, 17, .62);
+  border-bottom: 1px solid var(--border-soft);
+}
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  height: 68px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-right: auto;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 700;
+  font-size: 16.5px;
+  letter-spacing: -.3px;
+}
+.mark {
+  width: 36px; height: 36px;
+  border-radius: 11px;
+  background: linear-gradient(135deg, #2FD6A0, #12A88C 55%, #0B6E86);
+  display: grid; place-items: center;
+  flex: none;
+  box-shadow: 0 6px 18px rgba(18, 168, 140, .35);
+}
+.mark svg { width: 24px; height: 24px; display: block; }
+
+.nav .link {
+  color: var(--text-2);
+  text-decoration: none;
+  font-size: 14.5px;
+  font-weight: 500;
+  transition: color .18s ease;
+}
+.nav .link:hover { color: var(--mint); }
+.nav .link.active { color: var(--text); }
+
+/* ---- hero ----------------------------------------------------------------- */
+.hero {
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap: 54px;
+  align-items: center;
+  /* padding-block, NOT the shorthand: this element also carries .wrap, and
+     `padding: 84px 0 90px` would override .wrap's horizontal padding and slam
+     the headline against the viewport edge. */
+  padding-block: 84px 90px;
+}
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px 7px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(62, 242, 164, .30);
+  background: rgba(62, 242, 164, .07);
+  color: var(--mint);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: .1px;
+  margin-bottom: 24px;
+}
+.pill .dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--mint);
+  box-shadow: 0 0 10px var(--mint);
+}
+h1 {
+  font-size: clamp(34px, 5.4vw, 56px);
+  line-height: 1.08;
+  letter-spacing: -1.6px;
+  font-weight: 700;
+  margin: 0 0 18px;
+}
+.grad {
+  background: linear-gradient(104deg, var(--mint), var(--petrol) 70%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.lede {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text-2);
+  margin: 0 0 30px;
+  max-width: 52ch;
+}
+.hero-notes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  font-size: 13.5px;
+  color: var(--text-3);
+}
+.hero-notes span { display: inline-flex; align-items: center; gap: 7px; }
+.hero-notes svg { width: 15px; height: 15px; color: var(--mint); flex: none; }
+
+/* ---- phone mockup ---------------------------------------------------------
+   The app's own home screen, rebuilt in CSS. A vault app's site that never
+   shows the vault is indistinguishable from every other template. */
+.phone-stage { display: grid; place-items: center; }
+.phone {
+  width: 292px;
+  border-radius: 42px;
+  padding: 11px;
+  background: linear-gradient(160deg, rgba(255,255,255,.16), rgba(255,255,255,.03));
+  box-shadow:
+    0 40px 90px rgba(0,0,0,.65),
+    0 0 0 1px rgba(255,255,255,.06),
+    0 0 70px rgba(62,242,164,.10);
+}
+.screen {
+  border-radius: 33px;
+  background: var(--ink);
+  overflow: hidden;
+  position: relative;
+  padding: 20px 15px 15px;
+  min-height: 545px;
+  isolation: isolate;
+  /* Column so the nav pill can be pushed to the bottom edge the way it
+     floats in the app, instead of trailing the tiles and leaving dead space
+     underneath. */
+  display: flex;
+  flex-direction: column;
+}
+/* the app's own aurora, scaled down */
+.screen::before {
+  content: "";
+  position: absolute; inset: 0; z-index: -1;
+  background:
+    radial-gradient(14rem 12rem at 10% -4%, rgba(62,242,164,.30), transparent 62%),
+    radial-gradient(12rem 11rem at 100% 12%, rgba(14,125,138,.34), transparent 62%),
+    radial-gradient(11rem 10rem at 45% 104%, rgba(124,92,255,.22), transparent 62%);
+}
+.s-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; }
+.s-hi { font-size: 15.5px; font-weight: 700; letter-spacing: -.3px; }
+.s-sub { font-size: 9.5px; color: var(--text-3); margin-top: 1px; }
+.s-pro {
+  font-size: 8px; font-weight: 700; letter-spacing: .9px;
+  padding: 4px 8px; border-radius: 999px; color: #04140f;
+  background: linear-gradient(135deg, var(--mint), var(--petrol));
+}
+.s-search {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--glass);
+  border: 1px solid var(--border-soft);
+  border-radius: 13px;
+  padding: 9px 11px;
+  font-size: 10.5px;
+  color: var(--text-3);
+  margin-bottom: 13px;
+}
+.s-search svg { width: 13px; height: 13px; color: var(--text-3); flex: none; }
+
+.s-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+.s-tile {
+  background: var(--glass);
+  border: 1px solid var(--border-soft);
+  border-radius: 17px;
+  padding: 11px;
+  min-height: 92px;
+  display: flex;
+  flex-direction: column;
+}
+.s-tile .row { display: flex; align-items: center; justify-content: space-between; }
+.s-chip {
+  width: 30px; height: 30px; border-radius: 9px;
+  display: grid; place-items: center; flex: none;
+}
+.s-chip svg { width: 15px; height: 15px; color: #fff; }
+.s-count {
+  font-size: 15px; font-weight: 500; letter-spacing: -.4px;
+  font-variant-numeric: tabular-nums;
+}
+.s-name { font-size: 11px; font-weight: 600; margin-top: auto; }
+.s-desc { font-size: 8.5px; color: var(--text-3); margin-top: 1px; }
+
+.g-docs  { background: linear-gradient(135deg, var(--mint), var(--petrol)); }
+.g-pass  { background: linear-gradient(135deg, var(--violet), var(--pink)); }
+.g-cards { background: linear-gradient(135deg, var(--gold), var(--ember)); }
+.g-notes { background: linear-gradient(135deg, var(--ice), var(--sky)); }
+
+.s-nav {
+  margin-top: auto;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(255,255,255,.07);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 8px 14px;
+  backdrop-filter: blur(10px);
+}
+.s-nav svg { width: 17px; height: 17px; color: var(--text-3); }
+.s-nav svg.on { color: var(--text); }
+.s-add {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--cta-1), var(--cta-2));
+  display: grid; place-items: center;
+  box-shadow: 0 5px 16px rgba(25,201,127,.45);
+}
+.s-add svg { width: 17px; height: 17px; color: #fff; }
+
+/* ---- feature cards -------------------------------------------------------- */
+.section { padding: 26px 0 76px; }
+.eyebrow {
+  font-size: 12px; font-weight: 700; letter-spacing: 1.6px;
+  text-transform: uppercase; color: var(--mint); margin: 0 0 12px;
+}
+h2 {
+  font-size: clamp(25px, 3.6vw, 34px);
+  letter-spacing: -.9px;
+  line-height: 1.2;
+  margin: 0 0 14px;
+  font-weight: 700;
+}
+.section > .wrap > p.intro {
+  color: var(--text-2); font-size: 16.5px; max-width: 58ch; margin: 0 0 34px;
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(232px, 1fr));
+  gap: 16px;
+}
+.card {
+  background: var(--glass);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--r-lg);
+  padding: 22px;
+  transition: border-color .2s ease, transform .2s ease;
+}
+.card:hover { border-color: var(--border); transform: translateY(-2px); }
+.chip {
+  width: 42px; height: 42px; border-radius: 13px;
+  display: grid; place-items: center; margin-bottom: 15px;
+}
+.chip svg { width: 21px; height: 21px; color: #fff; }
+.card h3 { margin: 0 0 7px; font-size: 16px; font-weight: 600; letter-spacing: -.2px; }
+.card p { margin: 0; font-size: 14.2px; line-height: 1.62; color: var(--text-2); }
+
+/* ---- split rows ----------------------------------------------------------- */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.panel {
+  background: var(--glass);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--r-lg);
+  padding: 26px;
+}
+.panel h3 { margin: 0 0 10px; font-size: 18px; letter-spacing: -.3px; }
+.panel p  { margin: 0 0 12px; color: var(--text-2); font-size: 14.5px; }
+.panel ul { margin: 0; padding-left: 18px; color: var(--text-2); font-size: 14.5px; }
+.panel li { margin-bottom: 7px; }
+.panel li::marker { color: var(--mint); }
+
+.warn {
+  border-color: rgba(247, 194, 77, .32);
+  background: rgba(247, 194, 77, .06);
+}
+.warn h3 { color: var(--gold); }
+
+/* ---- document pages ------------------------------------------------------- */
+/* Same reason as .hero — these elements also carry .wrap, so only the block
+   axis may be set here or the horizontal gutter disappears. */
+.doc { padding-block: 54px 84px; max-width: 780px; }
+.doc h1 { font-size: clamp(28px, 4.4vw, 40px); margin: 0 0 8px; }
+.doc .meta { color: var(--text-3); font-size: 13.5px; margin: 0 0 36px; }
+.doc h2 {
+  font-size: 20px; margin: 44px 0 12px; padding-top: 22px;
+  border-top: 1px solid var(--border-soft); letter-spacing: -.3px;
+}
+.doc h3 { font-size: 15.5px; margin: 26px 0 8px; color: var(--mint); font-weight: 600; }
+.doc p, .doc li { color: #C6DAD6; font-size: 15.5px; }
+.doc ul { padding-left: 20px; }
+.doc li { margin-bottom: 8px; }
+.doc li::marker { color: var(--mint); }
+.doc strong { color: var(--text); font-weight: 600; }
+.doc code {
+  background: rgba(255,255,255,.07);
+  padding: 2px 6px; border-radius: 6px;
+  font-size: 13.5px;
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+}
+
+.callout {
+  background: rgba(62, 242, 164, .06);
+  border: 1px solid rgba(62, 242, 164, .26);
+  border-left: 3px solid var(--mint);
+  border-radius: var(--r-md);
+  padding: 17px 19px;
+  margin: 24px 0;
+}
+.callout p { margin: 0; font-size: 15px; }
+.callout.amber {
+  background: rgba(247, 194, 77, .06);
+  border-color: rgba(247, 194, 77, .30);
+  border-left-color: var(--gold);
+}
+
+table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14.5px; }
+th, td { text-align: left; padding: 11px 13px; border-bottom: 1px solid var(--border-soft); vertical-align: top; }
+th { color: var(--mint); font-size: 12px; text-transform: uppercase; letter-spacing: .9px; font-weight: 700; }
+td { color: #C6DAD6; }
+
+a { color: var(--mint); text-underline-offset: 3px; }
+
+/* ---- footer --------------------------------------------------------------- */
+footer {
+  border-top: 1px solid var(--border-soft);
+  padding: 34px 0 48px;
+  color: var(--text-3);
+  font-size: 13.5px;
+  background: rgba(0,0,0,.25);
+}
+.foot {
+  display: flex; align-items: flex-start; gap: 26px; flex-wrap: wrap;
+}
+.foot .brand { margin-right: auto; }
+.foot-links { display: flex; gap: 20px; flex-wrap: wrap; }
+.foot-links a { color: var(--text-3); text-decoration: none; }
+.foot-links a:hover { color: var(--mint); }
+.foot-note { width: 100%; margin-top: 18px; font-size: 12.5px; color: var(--text-3); }
+
+/* ---- responsive ----------------------------------------------------------- */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; gap: 46px; padding: 56px 0 64px; }
+  .phone-stage { order: -1; }
+  .split { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .nav { gap: 16px; height: 62px; }
+  .nav .link { font-size: 13.5px; }
+  .phone { width: 260px; }
+  h1 { letter-spacing: -1px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; scroll-behavior: auto !important; }
+}

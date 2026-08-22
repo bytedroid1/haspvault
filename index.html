@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hasp Vault — your personal locker</title>
+<meta name="description" content="Documents, passwords, cards and notes — kept on your own phone. No cloud, no account.">
+<meta name="theme-color" content="#050E11">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="aurora" aria-hidden="true">
+  <span class="blob-a"></span><span class="blob-b"></span><span class="blob-c"></span>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="index.html">
+      <span class="mark" aria-hidden="true">
+        <!-- The app's mark, traced from lib/widgets/hifazat_mark.dart on its
+             512 grid: crest shield, H cut clean through, keyhole in the
+             crossbar. One path, evenodd, so the H and keyhole are real holes. -->
+        <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#fff" fill-rule="evenodd" d="
+            M256 104 L424 162 L424 286 C424 364 348 410 256 436
+            C164 410 88 364 88 286 L88 162 Z
+            M191 168 A23 23 0 0 1 214 191 L214 307 A23 23 0 0 1 191 330
+            A23 23 0 0 1 168 307 L168 191 A23 23 0 0 1 191 168 Z
+            M321 168 A23 23 0 0 1 344 191 L344 307 A23 23 0 0 1 321 330
+            A23 23 0 0 1 298 307 L298 191 A23 23 0 0 1 321 168 Z
+            M214 222 L298 222 L298 276 L214 276 Z
+            M256 227 A16 16 0 1 1 256 259 A16 16 0 1 1 256 227 Z
+            M247 243 L265 243 L270 270 L242 270 Z"/>
+        </svg>
+      </span>
+      Hasp Vault
+    </a>
+    <a class="link active" href="index.html">Home</a>
+    <a class="link" href="privacy.html">Privacy</a>
+    <a class="link" href="terms.html">Terms</a>
+    <a class="link" href="support.html">Support</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- ================= hero ================= -->
+  <section class="wrap hero">
+    <div>
+      <span class="pill"><span class="dot"></span> No cloud · No account</span>
+      <h1>Your documents stay<br><span class="grad">on your phone.</span></h1>
+      <p class="lede">
+        Stop digging through your gallery for a photo of your NIC, or a notes
+        file full of passwords. Hasp Vault keeps your CV, passport, logins
+        and bank cards in one place — encrypted, behind a PIN, your
+        fingerprint or Face ID.
+      </p>
+      <div class="hero-notes">
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          Works fully offline
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          Encrypted backup, free
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          12 languages
+        </span>
+      </div>
+    </div>
+
+    <!-- The app's actual home screen, rebuilt in CSS. -->
+    <div class="phone-stage">
+      <div class="phone">
+        <div class="screen">
+          <div class="s-top">
+            <div>
+              <div class="s-hi">Your vault</div>
+              <div class="s-sub">Your personal locker</div>
+            </div>
+            <span class="s-pro">PRO</span>
+          </div>
+
+          <div class="s-search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+            Search your vault…
+          </div>
+
+          <div class="s-grid">
+            <div class="s-tile">
+              <div class="row">
+                <span class="s-chip g-docs">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>
+                </span>
+                <span class="s-count">12</span>
+              </div>
+              <div class="s-name">Documents</div>
+              <div class="s-desc">CV · NIC · Passport</div>
+            </div>
+
+            <div class="s-tile">
+              <div class="row">
+                <span class="s-chip g-pass">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="12" r="4"/><path d="M12 12h9M18 12v4M15.5 12v3"/></svg>
+                </span>
+                <span class="s-count">24</span>
+              </div>
+              <div class="s-name">Passwords</div>
+              <div class="s-desc">Usernames &amp; logins</div>
+            </div>
+
+            <div class="s-tile">
+              <div class="row">
+                <span class="s-chip g-cards">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19"/></svg>
+                </span>
+                <span class="s-count">3</span>
+              </div>
+              <div class="s-name">Cards</div>
+              <div class="s-desc">Bank &amp; ID</div>
+            </div>
+
+            <div class="s-tile">
+              <div class="row">
+                <span class="s-chip g-notes">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v11l-5 5H4z"/><path d="M20 15h-5v5"/></svg>
+                </span>
+                <span class="s-count">7</span>
+              </div>
+              <div class="s-name">Notes</div>
+              <div class="s-desc">Private text</div>
+            </div>
+          </div>
+
+          <div class="s-nav">
+            <svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V20a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 20z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2.5h8a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            <span class="s-add">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 6-2 7-2 7h16s-2-1-2-7"/><path d="M10.5 20a2 2 0 0 0 3 0"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 14a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V20a2 2 0 1 1-4 0v-.1A1.6 1.6 0 0 0 7 18.4a1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 4 14a2 2 0 0 1-1.8-1.2H2a2 2 0 1 1 0-4h.1A1.6 1.6 0 0 0 3.6 7a1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 8 2.7h.1A2 2 0 0 1 10 1h4a2 2 0 0 1 1.9 1.7"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= what's inside ================= -->
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">What's inside</p>
+      <h2>Four sections, one lock</h2>
+      <p class="intro">
+        Everything is encrypted the same way and opens with the same PIN. No
+        separate passwords to remember for separate things.
+      </p>
+
+      <div class="grid-4">
+        <div class="card">
+          <span class="chip g-docs">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>
+          </span>
+          <h3>Documents</h3>
+          <p>Scan with the camera or import what you already have, and keep
+             both sides of a CNIC as one document with two pages. Group them
+             into folders with Pro. Images open inside the app, so a passport
+             never has to be handed to another app to be viewed.</p>
+        </div>
+
+        <div class="card">
+          <span class="chip g-pass">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="12" r="4"/><path d="M12 12h9M18 12v4M15.5 12v3"/></svg>
+          </span>
+          <h3>Passwords</h3>
+          <p>Logins with a built-in generator for strong ones, search across
+             titles and usernames, and a clipboard that wipes itself thirty
+             seconds after you copy. With Pro, sort them into folders like
+             College or Work.</p>
+        </div>
+
+        <div class="card">
+          <span class="chip g-cards">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19"/></svg>
+          </span>
+          <h3>Cards</h3>
+          <p>Bank and ID cards drawn as real cards, with the number masked
+             until you choose to reveal it and the CVV hidden by default.</p>
+        </div>
+
+        <div class="card">
+          <span class="chip g-notes">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v11l-5 5H4z"/><path d="M20 15h-5v5"/></svg>
+          </span>
+          <h3>Notes</h3>
+          <p>Private text for the things that don't fit a form — recovery
+             phrases, account numbers, the answer to that security question.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= privacy ================= -->
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">How it stays private</p>
+      <h2>There is no server to break into</h2>
+      <p class="intro">
+        Most apps promise security. This one removes the thing that usually
+        fails: there is no account, no sync and nowhere for your files to be
+        stored except your own phone.
+      </p>
+
+      <div class="split">
+        <div class="panel">
+          <h3>Encrypted where it sits</h3>
+          <p>Passwords, cards, notes and document details live in an AES-256
+             database whose key is generated on your device and held in the
+             Android Keystore.</p>
+          <ul>
+            <li>Your PIN is never stored — only a salted PBKDF2 hash</li>
+            <li>Wrong attempts trigger escalating lockouts</li>
+            <li>Auto-locks when idle, and the moment you leave the app</li>
+            <li>Hidden from the app switcher; screenshots blocked</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <h3>Two ways out, both yours</h3>
+          <p>Data only moves when you tell it to, and never through anyone
+             else's infrastructure.</p>
+          <ul>
+            <li><strong>Backup</strong> — one encrypted file, sealed with a
+                passphrase only you know. Free, deliberately.</li>
+            <li><strong>Phone to phone</strong> — sends the vault straight to
+                your new handset over your own Wi-Fi, encrypted, with a
+                one-shot code that expires in three minutes.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="split" style="margin-top:20px">
+        <div class="panel warn">
+          <h3>Uninstalling deletes everything</h3>
+          <p>That is the design, not an oversight. There is no cloud copy to
+             restore from and no reset code — which is exactly why nobody else
+             can get in either. Export a backup before you change phones.</p>
+        </div>
+        <div class="panel">
+          <h3>Free, with an optional upgrade</h3>
+          <p>The free version stores as much as you like — unlimited documents,
+             passwords, cards and notes — and includes encrypted backup, because
+             protecting yourself from data loss should never be the paid part.
+             There are no adverts anywhere in the app.</p>
+          <p style="margin:0">Pro adds folders for documents and passwords,
+             expiry reminders for your passport, CNIC or licence, a password
+             health check, phone-to-phone transfer between iPhone and Android,
+             break-in alerts and extra themes.
+             Take it yearly — with a free trial when Google Play offers you one
+             — or pay once for lifetime and never pay again.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <a class="brand" href="index.html">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#fff" fill-rule="evenodd" d="
+            M256 104 L424 162 L424 286 C424 364 348 410 256 436
+            C164 410 88 364 88 286 L88 162 Z
+            M191 168 A23 23 0 0 1 214 191 L214 307 A23 23 0 0 1 191 330
+            A23 23 0 0 1 168 307 L168 191 A23 23 0 0 1 191 168 Z
+            M321 168 A23 23 0 0 1 344 191 L344 307 A23 23 0 0 1 321 330
+            A23 23 0 0 1 298 307 L298 191 A23 23 0 0 1 321 168 Z
+            M214 222 L298 222 L298 276 L214 276 Z
+            M256 227 A16 16 0 1 1 256 259 A16 16 0 1 1 256 227 Z
+            M247 243 L265 243 L270 270 L242 270 Z"/>
+        </svg>
+      </span>
+      Hasp Vault
+    </a>
+    <nav class="foot-links">
+      <a href="privacy.html">Privacy policy</a>
+      <a href="terms.html">Terms of use</a>
+      <a href="support.html">Support</a>
+    </nav>
+    <div class="foot-note">
+      © 2026 Hasp Vault · <em>Hasp</em> (حفاظت) means protection.
+      This site loads no fonts, scripts or trackers from anyone else.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
