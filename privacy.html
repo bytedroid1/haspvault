@@ -40,16 +40,17 @@
 
   <h1>Privacy Policy</h1>
   <p class="meta">Applies to the Hasp Vault Android app (<code>com.hifazat.vault</code>).<br>
-     Last updated: 22 August 2026.</p>
+     Last updated: 26 August 2026.</p>
 
   <div class="callout">
     <p>
       <strong>The short version.</strong> Your documents, passwords, cards and
       notes are stored on your phone and are never sent to us. We do not have a
       server that holds your data, we do not have accounts, and we cannot see
-      anything in your vault. The only personal information that ever leaves
-      your device is nothing at all: there is no analytics, no tracking and no
-      advertising in the app.
+      anything in your vault. The app does send a small amount of technical
+      information — crash reports, basic usage statistics, and your purchase
+      status — which is described in section 3. None of it contains anything
+      from inside your vault.
     </p>
   </div>
 
@@ -82,26 +83,37 @@
 
   <h2>3. What leaves your device, and when</h2>
 
-  <h3>Advertising — none today</h3>
+  <h3>Crash reports and usage statistics</h3>
   <p>
-    <strong>Hasp Vault currently contains no advertising of any kind.</strong>
-    There is no advertising SDK in the app, it does not read your device's
-    Advertising ID, and no advertising data leaves your phone — because there is
-    nothing in the app that would send any.
+    The app uses Google Firebase Crashlytics and Firebase Analytics. Crashlytics
+    sends a report when the app crashes: the error, where in the code it
+    happened, your device model, operating system version and app version.
+    Analytics records which screens are opened and how often the app is used.
   </p>
   <p>
-    Adverts may be introduced in a future version. If that ever happens, this
-    section will be rewritten to say exactly what is collected and by whom
-    <em>before</em> that version is released, and the app's Play Data Safety
-    declaration will be updated to match. Any advertising would be optional and
-    would never appear beside your documents, cards or passwords. Your vault
-    contents would not be shared with an advertiser under any circumstances.
+    Neither is given anything from inside your vault. Document names, passwords,
+    card numbers, note text and file contents are never included — the app is
+    built so that this data cannot reach them.
+    Google's handling of it is covered by the
+    <a href="https://firebase.google.com/support/privacy">Firebase privacy
+    policy</a>.
   </p>
+
+  <h3>Purchases</h3>
   <p>
-    If you are in the EEA, the UK or Switzerland, you are asked for consent
-    before any ad is requested, using Google's certified consent mechanism. You
-    can change that choice at any time from
-    <strong>Settings → Ad privacy choices</strong> in the app.
+    If you buy Hasp Vault Pro, the purchase is handled by Google Play and
+    recorded by RevenueCat, which we use to check whether your purchase is
+    active. RevenueCat receives the purchase itself and an anonymous identifier
+    it generates — not your name, your email or anything from your vault. See
+    the <a href="https://www.revenuecat.com/privacy">RevenueCat privacy
+    policy</a>.
+  </p>
+
+  <h3>Advertising — none</h3>
+  <p>
+    There is no advertising in Hasp Vault and no advertising SDK in the app. It
+    does not read your device's Advertising ID; the permissions that would
+    allow it to are removed from the app at build time.
   </p>
 
   <h3>Backups — only when you create one</h3>
@@ -125,10 +137,9 @@
   <h2>4. What we never collect</h2>
   <ul>
     <li>No account, sign-up, email address or phone number.</li>
-    <li>No analytics or usage tracking. We do not know how you use the app.</li>
-    <li>No crash reporting that includes your content.</li>
-    <li>No contacts, no calendar, no precise GPS location.</li>
     <li>No copies of your documents, passwords, cards or notes — ever.</li>
+    <li>No contacts, no calendar, no location.</li>
+    <li>No advertising identifier.</li>
   </ul>
 
   <h2>5. Permissions, and why</h2>
