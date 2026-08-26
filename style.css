@@ -1,0 +1,560 @@
+/* Hasp Vault — website
+ *
+ * "Document-grade": the visual language of the things the app actually holds.
+ * Identity documents have a typographic system of their own — machine-readable
+ * zones, tracked field labels, hairline rules, exact alignment — and borrowing
+ * that is both distinctive and honest to the product. No passport textures, no
+ * padlock clip art.
+ *
+ * Every colour here is lifted verbatim from lib/theme/app_theme.dart, so the
+ * site and the app read as one product rather than two. The site used to be
+ * near-black while the app is pale mint; that mismatch is what this fixes.
+ *
+ * Fonts are self-hosted. A privacy policy that calls out third parties, served
+ * from a page that phones a font CDN, argues against itself.
+ */
+
+@font-face {
+  font-family: "Archivo";
+  src: url("fonts/archivo.woff2") format("woff2-variations");
+  font-weight: 400 800;
+  font-stretch: 62% 125%;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PlexMono";
+  src: url("fonts/plexmono.woff2") format("woff2");
+  font-weight: 400 600;
+  font-display: swap;
+}
+
+:root {
+  /* Emerald — the app's default theme. */
+  --ground: #edf6f1;
+  --surface: #ffffff;
+  --line: #d3e4da;
+  --emerald: #0f7a54;
+  --deep: #0c6344;
+  --ink: #12201b;
+  --slate: #4a5d55;
+  --muted: #5e6f67;
+
+  /* The other three Pro themes. Used ONLY where the page talks about themes,
+   * so the colour set encodes something true instead of decorating. */
+  --amber: #8a6112;
+  --sapphire: #11627f;
+  --amethyst: #54409e;
+
+  --measure: 1180px;
+  --gutter: clamp(20px, 5vw, 56px);
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: "Archivo", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  font-variation-settings: "wdth" 100;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--emerald); text-underline-offset: 3px; }
+
+img { max-width: 100%; height: auto; display: block; }
+
+:focus-visible {
+  outline: 2px solid var(--emerald);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.wrap {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+}
+
+/* ---------- document vernacular ---------- */
+
+/* Field label, as printed above a value on an ID card. */
+.field {
+  font-family: "PlexMono", ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 14px;
+}
+
+.rule {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 0;
+}
+
+/* ---------- masthead ---------- */
+
+.masthead {
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--ground) 88%, white);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: saturate(140%) blur(8px);
+}
+
+.masthead > .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  height: 66px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.brand svg { width: 30px; height: 30px; display: block; }
+
+.brand b {
+  white-space: nowrap;
+  font-weight: 700;
+  font-variation-settings: "wdth" 112;
+  letter-spacing: -.01em;
+  font-size: 18px;
+}
+
+.nav {
+  display: flex;
+  gap: clamp(14px, 3vw, 30px);
+  font-family: "PlexMono", ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.nav a { color: var(--slate); text-decoration: none; }
+.nav a:hover { color: var(--emerald); }
+.nav a[aria-current="page"] { color: var(--emerald); font-weight: 600; }
+
+/* ---------- hero ---------- */
+
+.hero > .wrap {
+  display: grid;
+  grid-template-columns: 1.2fr minmax(0, 360px);
+  gap: clamp(30px, 6vw, 76px);
+  align-items: center;
+  padding-block: clamp(56px, 9vw, 104px);
+}
+
+.hero h1 {
+  font-size: clamp(36px, 4.6vw, 57px);
+  line-height: 1.02;
+  font-weight: 800;
+  font-variation-settings: "wdth" 118;
+  letter-spacing: -.028em;
+  margin: 0 0 26px;
+  text-wrap: balance;
+}
+
+/* The turn in the sentence, not decoration — it marks where the problem
+ * becomes the product. */
+.hero h1 em {
+  font-style: normal;
+  color: var(--emerald);
+  display: block;
+}
+
+.lede {
+  font-size: clamp(17px, 1.9vw, 20px);
+  color: var(--slate);
+  margin: 0 0 30px;
+  max-width: 46ch;
+}
+
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 26px;
+  padding: 0;
+  margin: 0 0 32px;
+  list-style: none;
+  font-family: "PlexMono", ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: .06em;
+  color: var(--slate);
+}
+
+.facts li { display: flex; align-items: center; gap: 8px; }
+.facts svg { width: 14px; height: 14px; color: var(--emerald); flex: none; }
+
+.cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #17976a, var(--deep));
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 15px 26px;
+  border-radius: 999px;
+  box-shadow: 0 12px 30px rgba(12, 99, 68, .26);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.cta:hover { transform: translateY(-2px); box-shadow: 0 16px 38px rgba(12, 99, 68, .32); }
+.cta svg { width: 18px; height: 18px; }
+
+.cta-note {
+  font-family: "PlexMono", ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--muted);
+  margin: 14px 0 0;
+  letter-spacing: .04em;
+}
+
+/* Device: a real capture, deliberately. A CSS rebuild of the UI drifts —
+ * this site showed a bottom nav bar and a 2x2 grid for months after both were
+ * removed from the app. A screenshot cannot lie about what shipped. */
+.device {
+  margin: 0;
+  /* A phone screen is ~1:1.97. Left unbounded it dwarfs the copy beside it
+     and pushes the fold off-screen, so the column is capped rather than the
+     image cropped — the whole screen stays readable. */
+  max-width: 318px;
+  justify-self: end;
+  border-radius: 34px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  padding: 9px;
+  box-shadow: 0 30px 70px rgba(18, 32, 27, .16), 0 3px 10px rgba(18, 32, 27, .06);
+  rotate: -1.4deg;
+}
+
+.device img { border-radius: 26px; }
+
+.device figcaption {
+  font-family: "PlexMono", ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: center;
+  padding: 11px 0 3px;
+}
+
+/* ---------- MRZ band — the signature ---------- */
+
+/* The machine-readable zone from a passport data page, at its real width of
+ * 44 characters per line, carrying real claims about the app. It is the one
+ * loud element on the page; everything else stays quiet around it. */
+.mrz {
+  background: var(--ink);
+  color: var(--ground);
+  padding: clamp(20px, 3vw, 30px) 0;
+  overflow: hidden;
+}
+
+/* Sized so the 44 characters span the full measure, the way a real MRZ runs
+ * the width of the data page. Monospace advance is ~0.6em; with .06em of
+ * tracking each character occupies ~0.66em, so 44 of them fill the column at
+ * roughly 3.1vw. That ratio holds as the viewport changes, which is why this
+ * fills edge to edge on a phone as well as a desktop. */
+.mrz pre {
+  font-family: "PlexMono", ui-monospace, monospace;
+  font-size: clamp(8px, 3.1vw, 37px);
+  line-height: 1.5;
+  letter-spacing: .06em;
+  margin: 0;
+  white-space: pre;
+  font-weight: 400;
+}
+
+.mrz-key {
+  padding-block: 20px 0;
+  margin: 0;
+}
+
+.mrz pre::-webkit-scrollbar { display: none; }
+.mrz .lit { color: #6fe0ac; }
+
+/* ---------- sections ---------- */
+
+.section { padding-block: clamp(58px, 8vw, 96px); }
+.section + .section { border-top: 1px solid var(--line); }
+
+.section h2 {
+  font-size: clamp(28px, 3.9vw, 44px);
+  line-height: 1.08;
+  font-weight: 800;
+  font-variation-settings: "wdth" 112;
+  letter-spacing: -.02em;
+  margin: 0 0 16px;
+  max-width: 20ch;
+  text-wrap: balance;
+}
+
+.section > .wrap > p { max-width: 62ch; color: var(--slate); margin: 0 0 34px; }
+
+/* Cards laid out like the fields of a form. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(228px, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.cell {
+  background: var(--surface);
+  padding: 26px 24px 28px;
+}
+
+.cell h3 {
+  font-size: 18px;
+  font-weight: 700;
+  font-variation-settings: "wdth" 106;
+  margin: 0 0 8px;
+}
+
+.cell p { margin: 0; color: var(--slate); font-size: 15px; }
+
+.cell .field { margin-bottom: 18px; }
+
+.cell svg { width: 22px; height: 22px; color: var(--emerald); margin-bottom: 14px; }
+
+/* ---------- split: prose beside a real screen ---------- */
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 330px);
+  gap: clamp(30px, 6vw, 70px);
+  align-items: center;
+}
+
+.claims { list-style: none; padding: 0; margin: 0; }
+
+.claims li {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  gap: 14px;
+  padding: 15px 0;
+  border-top: 1px solid var(--line);
+  color: var(--slate);
+  font-size: 15.5px;
+}
+
+.claims li:last-child { border-bottom: 1px solid var(--line); }
+.claims svg { width: 18px; height: 18px; color: var(--emerald); margin-top: 2px; }
+.claims b { color: var(--ink); font-weight: 600; }
+
+/* ---------- pricing ---------- */
+
+.plans {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 18px;
+}
+
+.plan {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 28px 26px 30px;
+}
+
+.plan.is-pro { border-color: color-mix(in srgb, var(--emerald) 42%, var(--line)); }
+
+.plan h3 {
+  font-size: 20px;
+  font-weight: 800;
+  font-variation-settings: "wdth" 108;
+  margin: 0 0 6px;
+}
+
+.plan > p { color: var(--slate); font-size: 15px; margin: 0 0 20px; }
+
+.plan ul { list-style: none; padding: 0; margin: 0; }
+
+.plan li {
+  font-size: 15px;
+  color: var(--slate);
+  padding: 8px 0 8px 26px;
+  position: relative;
+}
+
+.plan li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 15px;
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  background: var(--emerald);
+}
+
+/* The four swatches are the app's four real theme accents. */
+.themes { display: flex; gap: 7px; margin-top: 18px; }
+
+.themes i {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  display: block;
+}
+
+.themes i:nth-child(1) { background: var(--emerald); }
+.themes i:nth-child(2) { background: var(--amber); }
+.themes i:nth-child(3) { background: var(--sapphire); }
+.themes i:nth-child(4) { background: var(--amethyst); }
+
+/* ---------- footer ---------- */
+
+.foot {
+  border-top: 1px solid var(--line);
+  padding-block: 40px 54px;
+  font-family: "PlexMono", ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: .05em;
+  color: var(--muted);
+}
+
+.foot > .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 30px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.foot a { color: var(--slate); text-decoration: none; }
+.foot a:hover { color: var(--emerald); }
+.foot nav { display: flex; gap: 22px; flex-wrap: wrap; }
+
+/* ---------- policy pages ---------- */
+
+.doc { padding-block: clamp(44px, 6vw, 74px); }
+
+.doc h1 {
+  font-size: clamp(32px, 4.6vw, 50px);
+  font-weight: 800;
+  font-variation-settings: "wdth" 116;
+  letter-spacing: -.025em;
+  line-height: 1.04;
+  margin: 0 0 10px;
+}
+
+.doc .meta {
+  font-family: "PlexMono", ui-monospace, monospace;
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: .04em;
+  margin: 0 0 34px;
+}
+
+.doc h2 {
+  font-size: 21px;
+  font-weight: 700;
+  font-variation-settings: "wdth" 106;
+  margin: 40px 0 12px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+  max-width: none;
+}
+
+.doc h2:first-of-type { border-top: 0; padding-top: 0; }
+.doc p, .doc li { color: var(--slate); max-width: 68ch; }
+.doc li { margin-bottom: 9px; }
+.doc code {
+  font-family: "PlexMono", ui-monospace, monospace;
+  font-size: .88em;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 1px 6px;
+}
+
+.doc table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 18px 0 24px;
+  font-size: 15px;
+}
+
+.doc th, .doc td {
+  text-align: left;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  vertical-align: top;
+  color: var(--slate);
+}
+
+.doc th {
+  background: var(--surface);
+  color: var(--ink);
+  font-family: "PlexMono", ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Callouts on the policy pages — the "short version" panels. */
+.callout {
+  max-width: 68ch;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--emerald);
+  border-radius: 0 14px 14px 0;
+  padding: 20px 22px;
+  margin: 24px 0 30px;
+}
+
+.callout p { margin: 0; }
+.callout p + p { margin-top: 10px; }
+.callout strong { color: var(--ink); }
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 880px) {
+  .hero > .wrap { grid-template-columns: 1fr; }
+  .split { grid-template-columns: 1fr; }
+  .device { max-width: 300px; margin-inline: auto; justify-self: center; rotate: 0deg; }
+  .hero h1 { font-variation-settings: "wdth" 108; }
+}
+
+@media (max-width: 560px) {
+  body { font-size: 16px; }
+  .nav { gap: 13px; font-size: 11px; letter-spacing: .06em; }
+  .brand b { font-size: 16px; }
+}
+
+/* Below this the wordmark and four nav links cannot both fit. The shield is
+ * the more recognisable of the two and still links home, so the word goes. */
+@media (max-width: 520px) {
+  .brand b { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+  .cta:hover { transform: none; }
+}
