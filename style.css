@@ -234,20 +234,77 @@ img { max-width: 100%; height: auto; display: block; }
  * removed from the app. A screenshot cannot lie about what shipped. */
 .device {
   margin: 0;
-  /* A phone screen is ~1:1.97. Left unbounded it dwarfs the copy beside it
+  /* A phone screen is ~1:2.17. Left unbounded it dwarfs the copy beside it
      and pushes the fold off-screen, so the column is capped rather than the
      image cropped — the whole screen stays readable. */
   max-width: 318px;
   justify-self: end;
-  border-radius: 34px;
-  border: 1px solid var(--line);
-  background: var(--surface);
-  padding: 9px;
-  box-shadow: 0 30px 70px rgba(18, 32, 27, .16), 0 3px 10px rgba(18, 32, 27, .06);
   rotate: -1.4deg;
 }
 
-.device img { border-radius: 26px; }
+/* An actual phone, not a rounded rectangle.
+ *
+ * This was a plain bordered box, which read as a template — the screenshot
+ * inside it was real, but nothing around it said "phone", so the whole figure
+ * looked generated. What sells a device frame is not gloss, it is getting
+ * three things right: a titanium rail with a real edge highlight, a black
+ * wall between rail and glass, and CONCENTRIC corner radii — the inner radius
+ * equals the outer minus the wall thickness. Radii that do not nest are the
+ * single biggest tell of a fake mockup, because real hardware cannot be made
+ * that way.
+ *
+ * Sized against a 6.9" iPhone, whose screen radius is ~13.7% of its width:
+ * 294px of glass wants 40px, so the rail's outer edge is 40 + 9 + 3 = 52px. */
+.device-frame {
+  position: relative;
+  padding: 9px;
+  border-radius: 52px;
+  background: linear-gradient(148deg,
+    #dfe3e0 0%, #b4bab7 16%, #868e8a 38%,
+    #d3d8d5 54%, #929a96 78%, #c9cecb 100%);
+  box-shadow:
+    0 34px 72px rgba(18, 32, 27, .22),
+    0 4px 12px rgba(18, 32, 27, .10),
+    inset 0 0 0 1px rgba(255, 255, 255, .38);
+}
+
+/* The black wall carried on the screen itself rather than a third element, so
+   both pseudo-elements stay free for the side buttons. */
+.device-screen {
+  display: block;
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  border: 3px solid #05100c;
+  border-radius: 43px;
+  background: #05100c;
+}
+
+/* Side rails. Two on the left (the volume pair, identical, so one box-shadow
+   clones the second), one longer on the right for the side button. At this
+   size they are 3px slivers — enough for the silhouette to read as hardware,
+   and any more detail would just be noise. */
+.device-frame::before,
+.device-frame::after {
+  content: "";
+  position: absolute;
+  width: 3px;
+  border-radius: 2px;
+  background: linear-gradient(#c2c7c4, #7c8380);
+}
+
+.device-frame::before {
+  left: -2px;
+  top: 22%;
+  height: 7.4%;
+  box-shadow: 0 calc(7.4% + 14px) 0 #9aa19d;
+}
+
+.device-frame::after {
+  right: -2px;
+  top: 27%;
+  height: 11%;
+}
 
 .device figcaption {
   font-family: "PlexMono", ui-monospace, monospace;
@@ -538,7 +595,7 @@ img { max-width: 100%; height: auto; display: block; }
 @media (max-width: 880px) {
   .hero > .wrap { grid-template-columns: 1fr; }
   .split { grid-template-columns: 1fr; }
-  .device { max-width: 300px; margin-inline: auto; justify-self: center; rotate: 0deg; }
+  .device { max-width: 292px; margin-inline: auto; justify-self: center; rotate: 0deg; }
   .hero h1 { font-variation-settings: "wdth" 108; }
 }
 
