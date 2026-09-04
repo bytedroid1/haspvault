@@ -642,3 +642,11 @@ a { color: inherit }
   #holds { padding-top: 132px }
   [id] { scroll-margin-top: 88px }
 }
+
+/* Related posts. Internal links are how a blog signals topical depth and how
+   a reader gets a second page — every post previously ended at the footer. */
+.rel-h { margin-top: 52px }
+.doc ul.rel { list-style: none; margin: 18px 0 0; display: grid; gap: 12px }
+.doc ul.rel li { padding-left: 0 }
+.doc ul.rel a { font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(15,122,84,.3) }
+.doc ul.rel a:hover { border-bottom-color: var(--emerald) }

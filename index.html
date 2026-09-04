@@ -3,97 +3,328 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Blog — Hasp Vault</title>
-<meta name="description" content="Practical writing about storing documents, passports, ID cards and passwords safely on your phone.">
+<title>Hasp Vault — Offline Document Vault &amp; Password Manager</title>
+<meta name="description" content="A secure offline vault for your passport, ID card, driver license, bank cards and passwords. AES-256 encrypted on your phone, locked behind a PIN or Face ID. No account, no cloud, no adverts. Free on iPhone and Android.">
 <meta name="theme-color" content="#0F7A54">
-<link rel="stylesheet" href="../style.css">
-<link rel="icon" href="../shots/favicon.png">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="shots/favicon.png">
+
+<meta property="og:title" content="Hasp Vault — Offline Document Vault &amp; Password Manager">
+<meta property="og:description" content="ID cards, passports and passwords — locked on your phone. AES-256 encrypted, offline, no account.">
+<meta property="og:url" content="https://haspvault.com">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://haspvault.com/">
+<meta property="og:image" content="https://haspvault.com/shots/og.png">
+<meta property="og:site_name" content="Hasp Vault">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Hasp Vault — Offline Document Vault &amp; Password Manager">
+<meta name="twitter:description" content="A secure offline vault for your passport, ID card, driver license, bank cards and passwords. AES-256 encrypted on your phone, locked behind a PIN or Face ID. No account, no cloud, no adverts. Free on iPhone and Android.">
+<meta name="twitter:image" content="https://haspvault.com/shots/og.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://haspvault.com/#org", "name": "Hasp Vault", "url": "https://haspvault.com/", "logo": "https://haspvault.com/shots/favicon.png", "email": "info@haspvault.com"}, {"@type": "WebSite", "@id": "https://haspvault.com/#site", "url": "https://haspvault.com/", "name": "Hasp Vault", "publisher": {"@id": "https://haspvault.com/#org"}}, {"@type": "SoftwareApplication", "name": "Hasp Vault", "applicationCategory": "UtilitiesApplication", "operatingSystem": "iOS 15.0 or later, Android", "description": "A secure offline vault for your passport, ID card, driver license, bank cards and passwords. AES-256 encrypted on your phone, locked behind a PIN or Face ID. No account, no cloud, no adverts. Free on iPhone and Android.", "url": "https://haspvault.com/", "image": "https://haspvault.com/shots/og.png", "offers": [{"@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Free"}, {"@type": "Offer", "price": "12.99", "priceCurrency": "USD", "name": "Hasp Pro yearly"}, {"@type": "Offer", "price": "24.99", "priceCurrency": "USD", "name": "Hasp Pro lifetime"}], "publisher": {"@id": "https://haspvault.com/#org"}}]}</script>
 </head>
 <body>
 
+<!-- Every glyph on this page is drawn here, on a 24-unit grid at a single
+     stroke weight. Nothing is pulled from an icon font: a reader clocks a
+     stock icon set instantly, and it is the fastest way to make a page look
+     assembled rather than designed. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="i-doc" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M7 3h6.5L17.5 7v14H7z"/><path d="M13.5 3v4h4"/>
+      <path d="M9.4 12.5h6.2M9.4 15.7h4.4"/>
+    </g>
+    <g id="i-key" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="8.6" cy="12" r="3.7"/><path d="M12.3 12H20"/><path d="M17.2 12v3.1M19.6 12v2.2"/>
+    </g>
+    <g id="i-card" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3.2" y="6.4" width="17.6" height="11.6" rx="2.2"/>
+      <path d="M3.2 10.2h17.6M6.6 14.4h4"/>
+    </g>
+    <g id="i-note" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="5" y="3" width="14" height="18" rx="2.2"/>
+      <path d="M8.4 8h7.2M8.4 12h7.2M8.4 16h4.6"/>
+    </g>
+    <g id="i-shield" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2.6l7.4 3.1v5.9c0 4.6-3.2 7.5-7.4 8.8-4.2-1.3-7.4-4.2-7.4-8.8V5.7z"/>
+      <path d="M8.9 11.9l2.2 2.3 4-4.6"/>
+    </g>
+    <g id="i-lock" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="5.2" y="10.4" width="13.6" height="10.2" rx="2.4"/>
+      <path d="M8.4 10.4V7.6a3.6 3.6 0 0 1 7.2 0v2.8"/>
+    </g>
+    <g id="i-clock" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="8.6"/><path d="M12 12V7.2M12 12l3.9 2.2"/>
+    </g>
+    <g id="i-swap" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2.4" y="4.6" width="6.6" height="14.8" rx="1.9"/>
+      <rect x="15" y="4.6" width="6.6" height="14.8" rx="1.9"/>
+      <path d="M10.2 12h3.6M13.8 12l-1.7-1.7M13.8 12l-1.7 1.7"/>
+    </g>
+    <g id="i-eye" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2.8" y="6.6" width="18.4" height="13.2" rx="2.6"/>
+      <path d="M8.4 6.6l1.4-2.4h4.4l1.4 2.4"/><circle cx="12" cy="13.2" r="3.6"/>
+    </g>
+    <g id="i-globe" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="8.8"/><path d="M3.2 12h17.6"/>
+      <path d="M12 3.2c2.3 2.4 3.5 5.5 3.5 8.8s-1.2 6.4-3.5 8.8c-2.3-2.4-3.5-5.5-3.5-8.8S9.7 5.6 12 3.2z"/>
+    </g>
+    <g id="i-check" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4.6 12.4l4.6 4.6L19.4 6.8"/>
+    </g>
+    <g id="i-tick-c" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9.2"/><path d="M8 12.3l2.7 2.7 5.4-6"/>
+    </g>
+    <!-- Store marks, drawn from the real geometry rather than pasted bitmaps. -->
+    <g id="i-apple" fill="currentColor" stroke="none">
+      <path d="M16.4 12.7c0-2.2 1.8-3.3 1.9-3.3-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.7.8-3.4.8-.7 0-1.8-.8-2.9-.8-1.5 0-2.9.9-3.7 2.2-1.6 2.7-.4 6.8 1.1 9 .8 1.1 1.7 2.3 2.8 2.2 1.1 0 1.5-.7 2.8-.7 1.3 0 1.7.7 2.9.7 1.2 0 1.9-1.1 2.7-2.2.8-1.2 1.2-2.4 1.2-2.5-.1 0-2.2-.9-2.2-3.7zM14.2 5.9c.6-.7 1-1.7.9-2.7-.9 0-2 .6-2.6 1.3-.6.6-1.1 1.7-.9 2.6 1 .1 2-.5 2.6-1.2z"/>
+    </g>
+    <g id="i-play" fill="none" stroke="none">
+      <path fill="currentColor" d="M4.4 2.9c-.3.3-.5.8-.5 1.4v15.4c0 .6.2 1.1.5 1.4l.1.1 8.6-8.6v-.4L4.5 2.8z"/>
+      <path fill="currentColor" d="M16 15.5l-2.9-2.9v-.4l2.9-2.9.1.1 3.4 1.9c1 .6 1 1.5 0 2.1z" opacity=".82"/>
+      <path fill="currentColor" d="M16.1 15.4L13.1 12.4 4.4 21.1c.3.4.9.4 1.5 0z" opacity=".64"/>
+      <path fill="currentColor" d="M16.1 8.6L5.9 2.8c-.6-.3-1.2-.3-1.5.1l8.7 8.7z" opacity=".46"/>
+    </g>
+    <mask id="markCut">
+      <path d="M256 104 L424 162 V286 C424 364 348 410 256 436 C164 410 88 364 88 286 V162 Z" fill="#fff"/>
+      <rect x="168" y="168" width="46" height="162" rx="23" fill="#000"/>
+      <rect x="298" y="168" width="46" height="162" rx="23" fill="#000"/>
+      <rect x="168" y="222" width="176" height="54" rx="27" fill="#000"/>
+    </mask>
+    <g id="i-mark">
+      <path d="M256 104 L424 162 V286 C424 364 348 410 256 436 C164 410 88 364 88 286 V162 Z"
+            fill="currentColor" mask="url(#markCut)"/>
+      <circle cx="256" cy="243" r="16" fill="currentColor"/>
+      <path d="M247 243 h18 l5 27 h-28 Z" fill="currentColor"/>
+    </g>
+  </defs>
+</svg>
+
 <header class="masthead">
-  <div class="wrap">
-    <a class="brand" href="../index.html">
-      <svg viewBox="88 104 336 332" aria-hidden="true">
-        <path fill="#0F7A54" fill-rule="evenodd" d="
-          M256 104 L424 162 L424 286 C424 364 348 410 256 436
-          C164 410 88 364 88 286 L88 162 Z
-          M191 168 A23 23 0 0 1 214 191 L214 307 A23 23 0 0 1 191 330
-          A23 23 0 0 1 168 307 L168 191 A23 23 0 0 1 191 168 Z
-          M321 168 A23 23 0 0 1 344 191 L344 307 A23 23 0 0 1 321 330
-          A23 23 0 0 1 298 307 L298 191 A23 23 0 0 1 321 168 Z
-          M214 222 L298 222 L298 276 L214 276 Z
-          M256 227 A16 16 0 1 1 256 259 A16 16 0 1 1 256 227 Z
-          M247 243 L265 243 L270 270 L242 270 Z"/>
-      </svg>
-      <b>Hasp Vault</b>
+  <div class="shell">
+    <a class="brand" href="index.html">
+      <svg viewBox="88 104 336 332" style="color:#0F7A54"><use href="#i-mark"/></svg>
+      Hasp Vault
     </a>
     <nav class="nav">
-      <a href="../index.html#holds">What it holds</a>
-      <a href="../index.html#security">Security</a>
-      <a href="../index.html#pricing">Pricing</a>
-      <a href="../blog/index.html" aria-current="page">Blog</a>
-      <a href="../support.html">Support</a>
+      <a href="#holds">What it holds</a>
+      <a href="#security">Security</a>
+      <a href="#pricing">Pricing</a>
+      <a href="blog/index.html">Blog</a>
+      <a href="support.html">Support</a>
     </nav>
     <a class="btn btn-primary btn-sm" href="https://play.google.com/store/apps/details?id=com.hifazat.vault">Get the app</a>
   </div>
 </header>
 
-<main class="wrap doc">
-  <p class="meta">Writing</p>
-  <h1>Notes on keeping documents safe</h1>
-  <p class="lead">
-    Practical writing about where your passport, ID card and passwords actually
-    live — and what happens to them when a phone is lost, sold, shared or
-    backed up without you thinking about it.
-  </p>
+<section class="hero">
+  <div class="shell">
+    <span class="kicker">Offline · No account · AES-256</span>
+    <h1>ID cards, passports and passwords. <em>Locked on your phone.</em></h1>
+    <p class="lede">
+      Hasp Vault is an offline document vault and password manager in one. Your
+      ID, licence, bank cards and logins stay encrypted on the device and open
+      with a PIN or Face ID — no account, no cloud, nothing to sign up for.
+    </p>
 
-  <div class="post-list">
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.hifazat.vault">
+        <svg viewBox="0 0 24 24"><use href="#i-play"/></svg> Get it on Google Play
+      </a>
+      <a class="btn btn-apple" href="https://apps.apple.com/app/id6804965635">
+        <svg viewBox="0 0 24 24"><use href="#i-apple"/></svg> Download on the App Store
+      </a>
+    </div>
 
-    <a class="post-card" href="passport-validity-six-month-rule.html">
-      <p class="meta">Travel · 9 min read</p>
-      <h2>The 6-month passport rule: how much validity you actually need</h2>
-      <p>Your passport is not expired, and you are still not getting on the plane. Which countries apply it, where it is three months instead, and the renewal habit that removes the problem for good.</p>
-    </a>
+    <div class="trust">
+      <span><svg viewBox="0 0 24 24"><use href="#i-check"/></svg> Works offline</span>
+      <span><svg viewBox="0 0 24 24"><use href="#i-check"/></svg> Nothing to sign up for</span>
+      <span><svg viewBox="0 0 24 24"><use href="#i-check"/></svg> Unlimited storage, free</span>
+      <span><svg viewBox="0 0 24 24"><use href="#i-check"/></svg> 12 languages</span>
+    </div>
 
-    <a class="post-card" href="how-to-create-a-strong-password.html">
-      <p class="meta">Passwords · 9 min read</p>
-      <h2>How to create a strong password (and why the old advice was wrong)</h2>
-      <p>Length beats complexity, forced 90-day changes make things worse, and reuse matters more than either. What current NIST guidance actually says.</p>
-    </a>
+    <div class="hero-stage">
+      <div class="device">
+        <!-- A real iPhone is concentric rounded rectangles with a specular band
+             down each long edge. Drawn here rather than approximated with
+             nested divs, which is what made the previous frame read as a
+             mockup: 14.6 screen, +1.5 bezel, +1.5 rail, all sharing a centre. -->
+        <svg viewBox="-2 0 104 206" role="img" aria-label="Hasp Vault running on an iPhone">
+          <defs>
+            <linearGradient id="rail" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0"    stop-color="#7C7684"/>
+              <stop offset=".022" stop-color="#2E2934"/>
+              <stop offset=".08"  stop-color="#1E1A24"/>
+              <stop offset=".5"   stop-color="#17141C"/>
+              <stop offset=".92"  stop-color="#1E1A24"/>
+              <stop offset=".978" stop-color="#2E2934"/>
+              <stop offset="1"    stop-color="#7C7684"/>
+            </linearGradient>
+            <linearGradient id="btn" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#4A4350"/><stop offset="1" stop-color="#15121A"/>
+            </linearGradient>
+            <clipPath id="glass"><rect x="3" y="3" width="94" height="200" rx="14.6"/></clipPath>
+          </defs>
 
-    <a class="post-card" href="passport-photo-on-phone.html">
-      <p class="meta">Security · 8 min read</p>
-      <h2>Is it safe to keep a photo of your passport on your phone?</h2>
-      <p>Almost everyone has one. The honest answer is that it depends entirely on where that photo lives — and the camera roll is the worst of the available options.</p>
-    </a>
+          <!-- side buttons, behind the body so only the nub shows -->
+          <rect x="-1.4" y="36"  width="2.6" height="9"  rx=".9" fill="url(#btn)"/>
+          <rect x="-1.4" y="52"  width="2.6" height="16" rx=".9" fill="url(#btn)"/>
+          <rect x="-1.4" y="72"  width="2.6" height="16" rx=".9" fill="url(#btn)"/>
+          <rect x="98.8" y="58"  width="2.6" height="27" rx=".9" fill="url(#btn)"/>
 
-    <a class="post-card" href="best-document-vault-apps.html">
-      <p class="meta">Comparison · 11 min read</p>
-      <h2>The best document vault apps, and how to actually choose one</h2>
-      <p>Ten apps people use to store passports and ID, sorted by what they are genuinely good at — including where each one falls down, ours included.</p>
-    </a>
-
-    <a class="post-card" href="store-documents-offline.html">
-      <p class="meta">How-to · 9 min read</p>
-      <h2>How to store important documents on your phone without uploading them anywhere</h2>
-      <p>Cloud storage is not the only option, and for identity documents it is often the wrong one. A practical method that keeps everything on the device.</p>
-    </a>
-
-    <a class="post-card" href="lost-passport-abroad.html">
-      <p class="meta">Travel · 9 min read</p>
-      <h2>Lost your passport abroad? What you needed to do before you left</h2>
-      <p>Every embassy asks for the same handful of things. Almost none of it is available to you at the moment you actually need it.</p>
-    </a>
-
-    <a class="post-card" href="offline-password-manager.html">
-      <p class="meta">Passwords · 9 min read</p>
-      <h2>Do you need a password manager that works without the cloud?</h2>
-      <p>Syncing is a feature, not a virtue. What you give up by going offline, what you get back, and who should actually choose which.</p>
-    </a>
-
+          <rect x="0" y="0" width="100" height="206" rx="17.6" fill="url(#rail)"/>
+          <rect x="1.5" y="1.5" width="97" height="203" rx="16.1" fill="#08080A"/>
+          <image href="shots/home.png" x="3" y="3" width="94" height="200"
+                 preserveAspectRatio="xMidYMid slice" clip-path="url(#glass)"/>
+          <!-- the highlight that runs along the top edge of a milled band -->
+          <rect x=".5" y=".5" width="99" height="205" rx="17.1"
+                fill="none" stroke="rgba(255,255,255,.22)" stroke-width="1"/>
+        </svg>
+      </div>
+    </div>
   </div>
-</main>
+</section>
+
+<section class="section" id="holds">
+  <div class="shell">
+    <div class="section-head centre">
+      <h2>Four kinds of thing, one lock</h2>
+      <p>Everything is stored on the phone and unlocked together. No per-item password to remember, and nothing to sync.</p>
+    </div>
+
+    <div class="cards">
+      <article class="card">
+        <div class="card-mark"><svg viewBox="0 0 24 24"><use href="#i-doc"/></svg></div>
+        <h3>Documents</h3>
+        <span class="role">ID · Passport · CV</span>
+        <p>Scan with the camera or import a PDF. Both sides of a card stay together as one item with two pages.</p>
+      </article>
+      <article class="card">
+        <div class="card-mark"><svg viewBox="0 0 24 24"><use href="#i-key"/></svg></div>
+        <h3>Passwords</h3>
+        <span class="role">Logins you stop retyping</span>
+        <p>A generator for strong ones, search across titles and usernames, and a clipboard that wipes itself after thirty seconds.</p>
+      </article>
+      <article class="card">
+        <div class="card-mark"><svg viewBox="0 0 24 24"><use href="#i-card"/></svg></div>
+        <h3>Cards</h3>
+        <span class="role">Bank &amp; ID numbers</span>
+        <p>Numbers stay masked until you choose to look, so a glance over your shoulder shows nothing.</p>
+      </article>
+      <article class="card">
+        <div class="card-mark"><svg viewBox="0 0 24 24"><use href="#i-note"/></svg></div>
+        <h3>Notes</h3>
+        <span class="role">The things you text yourself</span>
+        <p>Wi-Fi codes, account numbers, the safe combination — out of your messages and into the vault.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section dark" id="security">
+  <div class="shell">
+    <div class="split">
+      <div>
+        <span class="kicker">Where it lives</span>
+        <h2>There is no server to break into</h2>
+        <p class="lede-dark">
+          Your documents, passwords and cards never leave your phone. That is not
+          a setting you switch on — there is no account to make and nowhere for
+          them to go.
+        </p>
+        <ul class="checks">
+          <li><svg viewBox="0 0 24 24"><use href="#i-tick-c"/></svg><span><b>Encrypted with AES-256</b>, with the key held in the phone’s own keystore.</span></li>
+          <li><svg viewBox="0 0 24 24"><use href="#i-tick-c"/></svg><span><b>Screenshots are blocked</b> and the vault hides itself in the app switcher.</span></li>
+          <li><svg viewBox="0 0 24 24"><use href="#i-tick-c"/></svg><span><b>Locks the moment you look away</b> — on idle, and when you switch apps.</span></li>
+          <li><svg viewBox="0 0 24 24"><use href="#i-tick-c"/></svg><span><b>Backup is free</b>, an encrypted file you keep. Losing everything shouldn’t be the paid part.</span></li>
+        </ul>
+      </div>
+      <div class="stat-grid">
+        <div class="stat"><svg viewBox="0 0 24 24"><use href="#i-lock"/></svg><b>AES-256</b><span>Encryption at rest</span></div>
+        <div class="stat"><svg viewBox="0 0 24 24"><use href="#i-shield"/></svg><b>No account</b><span>Nothing to sign up for</span></div>
+        <div class="stat"><svg viewBox="0 0 24 24"><use href="#i-globe"/></svg><b>12</b><span>Languages</span></div>
+        <div class="stat"><svg viewBox="0 0 24 24"><use href="#i-eye"/></svg><b>Break-in alerts</b><span>A photo of whoever tried</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-tint">
+  <div class="shell">
+    <div class="section-head centre">
+      <span class="kicker">How it works</span>
+      <h2>Three minutes to move in</h2>
+    </div>
+    <div class="steps">
+      <article class="step">
+        <h3>Set a PIN</h3>
+        <p>Four digits, plus Face ID if you want it. No email, no password, no verification code — the vault exists only on this phone.</p>
+      </article>
+      <article class="step">
+        <h3>Scan or import</h3>
+        <p>Photograph a document with the camera, or bring in a PDF or an image you already have. Multi-page items stay together.</p>
+      </article>
+      <article class="step">
+        <h3>Delete the originals</h3>
+        <p>Clear them out of your camera roll and your chat threads. That is the point — one copy, in one place, locked.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="pricing">
+  <div class="shell">
+    <div class="section-head centre">
+      <span class="kicker">What it costs</span>
+      <h2>Free to keep everything</h2>
+      <p>Storage is unlimited and encrypted backup is included on the free plan. Pro adds organisation and early warnings — not more room.</p>
+    </div>
+
+    <div class="plans">
+      <div class="plan">
+        <h3>Free</h3>
+        <div class="price">$0<small> / forever</small></div>
+        <p>Everything you need to move in and stay.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24"><use href="#i-check"/></svg>Unlimited documents, passwords, cards and notes</li>
+          <li><svg viewBox="0 0 24 24"><use href="#i-check"/></svg>Encrypted backup and restore</li>
+          <li><svg viewBox="0 0 24 24"><use href="#i-check"/></svg>Multi-page documents</li>
+          <li><svg viewBox="0 0 24 24"><use href="#i-check"/></svg>PIN and biometric unlock</li>
+          <li><svg viewBox="0 0 24 24"><use href="#i-check"/></svg>No adverts, ever</li>
+        </ul>
+      </div>
+
+      <div class="plan plan-pro">
+        <h3>Hasp Pro</h3>
+        <div class="price">$12.99<small> / year</small></div>
+        <p>Three days free, then yearly — or one payment for lifetime, which never renews.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24"><use href="#i-check"/></svg>Folders in Documents and Passwords</li>
+          <li><svg viewBox="0 0 24 24"><use href="#i-check"/></svg>Expiry reminders before an ID runs out</li>
+          <li><svg viewBox="0 0 24 24"><use href="#i-check"/></svg>Password health — reused, weak and old</li>
+          <li><svg viewBox="0 0 24 24"><use href="#i-check"/></svg>Phone-to-phone transfer over local Wi-Fi</li>
+          <li><svg viewBox="0 0 24 24"><use href="#i-check"/></svg>Break-in alerts and intruder photo</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="shell">
+    <h2>One vault for everything you’d hate to lose</h2>
+    <p>Free, unlimited, and encrypted on the device. There is nothing to sign up for.</p>
+    <div class="cta-row">
+      <a class="btn btn-light" href="https://play.google.com/store/apps/details?id=com.hifazat.vault">
+        <svg viewBox="0 0 24 24"><use href="#i-play"/></svg> Get it on Google Play
+      </a>
+      <a class="btn btn-apple" href="https://apps.apple.com/app/id6804965635">
+        <svg viewBox="0 0 24 24"><use href="#i-apple"/></svg> Download on the App Store
+      </a>
+    </div>
+  </div>
+</section>
 
 <footer class="foot">
   <div class="shell">
@@ -119,9 +350,9 @@
       <div>
         <h4>Product</h4>
         <ul>
-          <li><a href="../index.html#holds">What it holds</a></li>
-          <li><a href="../index.html#security">Security</a></li>
-          <li><a href="../index.html#pricing">Pricing</a></li>
+          <li><a href="index.html#holds">What it holds</a></li>
+          <li><a href="index.html#security">Security</a></li>
+          <li><a href="index.html#pricing">Pricing</a></li>
         </ul>
       </div>
       <div>
@@ -134,10 +365,10 @@
       <div>
         <h4>Company</h4>
         <ul>
-          <li><a href="../blog/index.html">Blog</a></li>
-          <li><a href="../support.html">Support</a></li>
-          <li><a href="../privacy.html">Privacy policy</a></li>
-          <li><a href="../terms.html">Terms</a></li>
+          <li><a href="blog/index.html">Blog</a></li>
+          <li><a href="support.html">Support</a></li>
+          <li><a href="privacy.html">Privacy policy</a></li>
+          <li><a href="terms.html">Terms</a></li>
         </ul>
       </div>
     </div>
