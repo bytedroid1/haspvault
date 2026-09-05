@@ -8,6 +8,15 @@
 <meta name="theme-color" content="#0F7A54">
 <link rel="stylesheet" href="style.css">
 <link rel="icon" href="shots/favicon.png">
+<link rel="canonical" href="https://haspvault.com/privacy.html">
+<meta property="og:image" content="https://haspvault.com/shots/og.png">
+<meta property="og:site_name" content="Hasp Vault">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Privacy Policy — Hasp Vault">
+<meta name="twitter:description" content="How Hasp Vault handles your data. Short version: it stays on your phone.">
+<meta name="twitter:image" content="https://haspvault.com/shots/og.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Privacy Policy — Hasp Vault", "url": "https://haspvault.com/privacy.html", "description": "How Hasp Vault handles your data. Short version: it stays on your phone.", "publisher": {"@id": "https://haspvault.com/#org"}}</script>
 </head>
 <body>
 
@@ -42,7 +51,7 @@
 <main class="wrap doc">
 
   <h1>Privacy Policy</h1>
-  <p class="meta">Applies to the Hasp Vault Android app (<code>com.hifazat.vault</code>).<br>
+  <p class="meta">Applies to the Hasp Vault apps for iOS and Android (<code>com.hifazat.vault</code>).<br>
      Last updated: 3 September 2026.</p>
 
   <div class="callout">
@@ -70,7 +79,7 @@
   <ul>
     <li><strong>Passwords, bank cards, notes and document details</strong> — held
         in a database encrypted with AES-256. The encryption key is generated on
-        your device and kept in the Android Keystore.</li>
+        your device and kept in the iOS Keychain or the Android Keystore.</li>
     <li><strong>Document files</strong> (scans, photos, PDFs) — stored in the
         app's private storage area.</li>
     <li><strong>Your PIN</strong> — never stored. We keep only a salted
@@ -190,11 +199,12 @@
 
   <h2>9. Security</h2>
   <p>
-    The vault database is encrypted with AES-256 using a key held in the Android
-    Keystore. Your PIN is stored only as a salted PBKDF2-SHA256 hash, and
+    The vault database is encrypted with AES-256 using a key held in the iOS
+    Keychain or the Android Keystore. Your PIN is stored only as a salted PBKDF2-SHA256 hash, and
     repeated wrong attempts trigger increasing lockout delays. The app hides its
-    contents in the app switcher and blocks screenshots while unlocked, and locks
-    itself after a period of inactivity.
+    contents in the app switcher and locks itself after a period of inactivity.
+    On Android it also blocks screenshots while unlocked; iOS does not allow an
+    app to block screenshots, so that protection is Android-only.
   </p>
   <p>
     No system is perfect, and a phone that is compromised at the operating-system
