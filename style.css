@@ -43,9 +43,13 @@
   --body: #4B5C55;
   --muted: #7C8C85;
 
-  --emerald: #0F7A54;
-  --emerald-dark: #0A5C3F;
+  /* The app's own green since 1.3.0 (Strongroom): the band, and the app
+     icon's tile. --emerald-dark is the app's deeper band, for hover. */
+  --emerald: #0A5C3F;
+  --emerald-dark: #084A33;
   --emerald-deep: #06301F;
+  /* The app's light accent on green, for marks on the dark sections. */
+  --lamp: #A8E0C5;
 
   --tint: #EAF5EF;
   --tint-2: #F4FAF7;
@@ -122,10 +126,11 @@ a { color: inherit }
   letter-spacing: -.024em;
   margin-right: auto;
 }
-/* The shield reads smaller than its box because the silhouette tapers to a
-   point at the bottom — so it needs to be set a little larger than the cap
-   height of the wordmark to look the same weight beside it. */
-.brand svg { width: 36px; height: 36px; display: block }
+/* The fold (the app icon's mark, Oct 2026) took the old shield's 36px box.
+   It is narrower than the shield was, so it is drawn with the shield's
+   footprint instead: 42px tall, the 3px above and below taken back with
+   negative margins so the header's height and the name's place do not move. */
+.brand .mark { width: 36px; height: 42px; margin: -3px 0; object-fit: contain; display: block }
 
 .nav { display: flex; gap: 30px; font-size: 15px; font-weight: 500 }
 .nav a { color: var(--body); text-decoration: none; transition: color .15s }
@@ -152,7 +157,7 @@ a { color: inherit }
 .btn-primary {
   background: var(--emerald);
   color: #fff;
-  box-shadow: 0 1px 2px rgba(6, 48, 31, .28), 0 8px 22px rgba(15, 122, 84, .22);
+  box-shadow: 0 1px 2px rgba(6, 48, 31, .28), 0 8px 22px rgba(10, 92, 63, .22);
 }
 .btn-primary:hover { background: var(--emerald-dark); transform: translateY(-1px) }
 
@@ -206,6 +211,7 @@ a { color: inherit }
 .lede {
   max-width: 60ch;
   margin: 22px auto 0;
+  text-wrap: pretty;
   font-size: clamp(17px, 1.7vw, 20px);
   color: var(--body);
 }
@@ -356,7 +362,7 @@ a { color: inherit }
    as the more confident of the two. */
 .plan-pro {
   border-color: transparent;
-  background: linear-gradient(168deg, #0C6344 0%, var(--emerald-deep) 100%);
+  background: linear-gradient(168deg, var(--emerald) 0%, var(--emerald-deep) 100%);
   color: #fff;
 }
 .plan-pro h3, .plan-pro .price, .plan-pro > p, .plan-pro li { color: #fff }
@@ -374,12 +380,12 @@ a { color: inherit }
 .plan ul { list-style: none; display: grid; gap: 13px; font-size: 15.5px }
 .plan li { display: flex; gap: 11px }
 .plan li svg { width: 19px; height: 19px; flex: none; margin-top: 2px; color: var(--emerald) }
-.plan-pro li svg { color: #6FD3A9 }
+.plan-pro li svg { color: var(--lamp) }
 
 /* ---------- call to action ---------- */
 
 .band {
-  background: linear-gradient(150deg, #0C6344 0%, var(--emerald-deep) 100%);
+  background: linear-gradient(150deg, var(--emerald) 0%, var(--emerald-deep) 100%);
   color: rgba(255, 255, 255, .82);
   text-align: center;
   padding: 96px 0;
@@ -396,7 +402,7 @@ a { color: inherit }
 
 .foot-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 44px; padding-bottom: 52px }
 .foot-brand { display: flex; align-items: center; gap: 12px; color: #fff; font-weight: 700; font-size: 21px; margin-bottom: 16px }
-.foot-brand svg { width: 34px; height: 34px }
+.foot-brand .mark { width: 34px; height: 40px; margin: -3px 0; object-fit: contain; display: block }
 .foot-top p { max-width: 34ch; font-size: 15px; line-height: 1.6 }
 
 .foot h4 { color: #fff; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; font-family: "PlexMono", ui-monospace, monospace; font-weight: 600; margin-bottom: 18px }
@@ -440,13 +446,13 @@ a { color: inherit }
    runs white the whole way down and the middle sags because of it. */
 .section.dark {
   background:
-    radial-gradient(90% 60% at 12% 0%, rgba(15, 122, 84, .30) 0%, transparent 60%),
+    radial-gradient(90% 60% at 12% 0%, rgba(10, 92, 63, .42) 0%, transparent 60%),
     linear-gradient(165deg, #0A2B1E 0%, #061A12 100%);
   color: rgba(232, 245, 239, .74);
   border: 0;
 }
 .section.dark h2 { color: #fff }
-.section.dark .kicker { color: #6FD3A9; display: block; margin-bottom: 14px }
+.section.dark .kicker { color: var(--lamp); display: block; margin-bottom: 14px }
 
 .lede-dark {
   margin-top: 18px;
@@ -457,7 +463,7 @@ a { color: inherit }
 }
 
 .dark .checks b { color: #fff }
-.dark .checks svg { color: #6FD3A9 }
+.dark .checks svg { color: var(--lamp) }
 .dark .checks li { font-size: 16px }
 
 /* Four plain figures rather than another row of cards — a different shape on
@@ -470,7 +476,7 @@ a { color: inherit }
   border-radius: var(--radius);
   padding: 26px 22px 24px;
 }
-.stat svg { width: 24px; height: 24px; color: #6FD3A9; display: block; margin-bottom: 16px }
+.stat svg { width: 24px; height: 24px; color: var(--lamp); display: block; margin-bottom: 16px }
 .stat b {
   display: block;
   color: #fff;
@@ -510,7 +516,7 @@ a { color: inherit }
   align-items: center;
   gap: 32px;
 }
-.masthead .brand svg { width: 36px; height: 36px }
+.masthead .brand .mark { width: 36px; height: 42px }
 .masthead .brand b { font-weight: 700 }
 .nav a[aria-current="page"] { color: var(--emerald); font-weight: 600 }
 
@@ -648,5 +654,5 @@ a { color: inherit }
 .rel-h { margin-top: 52px }
 .doc ul.rel { list-style: none; margin: 18px 0 0; display: grid; gap: 12px }
 .doc ul.rel li { padding-left: 0 }
-.doc ul.rel a { font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(15,122,84,.3) }
+.doc ul.rel a { font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(10,92,63,.3) }
 .doc ul.rel a:hover { border-bottom-color: var(--emerald) }

@@ -1,10 +1,34 @@
 # Hasp Vault — website
 
-Live at **https://bytedroid1.github.io/haspvault/** (GitHub Pages, repo
-`bytedroid1/haspvault`). The privacy policy Google Play links to is
-`https://bytedroid1.github.io/haspvault/privacy.html`.
+Live at **https://haspvault.com** (GitHub Pages, repo `bytedroid1/haspvault`,
+custom domain set by `CNAME`; the old `https://bytedroid1.github.io/haspvault/`
+address forwards there).
 
-Static site for the app: landing page, privacy policy, terms, support.
+## Pictures (`shots/`)
+
+| File | What it is |
+|---|---|
+| `home.png` | The app screen inside the phone on the home page (the app's home screen, as an iPhone shows it). |
+| `og.png` | The picture shown when someone shares a link to the site (1200 x 630). |
+| `favicon.png` | The browser-tab icon: the app icon with rounded corners. |
+| `apple-touch-icon.png` | The icon an iPhone uses when the site is added to the home screen; also the logo search engines see. |
+
+They are drawn from the real app, the same way as the store pictures. From
+`aurora_vault/`: `tool/store/render.sh web` (layouts in `store/src/web-hero.html`,
+`og.html`, `web-icon.html`; see `aurora_vault/store/README.md`). The pages ask
+for `favicon.png`, `og.png`, `apple-touch-icon.png`, the hero `home.png` and
+`style.css` with `?v=1.5` (31 Oct 2026): raise the number when they change, so
+browsers and link previews fetch the new ones. The pictures
+they replaced are in `_archive/2026-10-15/website-old-pictures/`.
+
+Static site for the app: landing page and blog. **The privacy policy, terms and
+support page live on the studio site** (`/Users/st/bytedroid website`,
+https://bytedroidstudio.com/apps/hasp-vault/privacy/, /terms/, /support/ — the
+addresses both stores and the app link to). Since 31 Oct 2026 `privacy.html`,
+`terms.html` and `support.html` here only forward there, and every link on the
+site points straight at them: two copies had drifted (this site's policy still
+said 3 Sep while the studio one was current). The last full copies are in
+`_archive/2026-10-31-website-before-1.3.2/`.
 No build step, no dependencies, no external requests — plain HTML and one CSS
 file. Drop it on any static host.
 
@@ -56,12 +80,12 @@ function. Set it up when the domain arrives.
 
 ## Before publishing
 
-- Replace `alwinpatel3@gmail.com` throughout if you would rather use a dedicated
-  support address than a personal one. It appears on the privacy, terms and
-  support pages, and Play requires a working contact address.
-- Re-read `privacy.html` against what the app actually does at release. It was
-  written to match the app as of 31 July 2026 — in particular, it states that no
-  analytics are collected and that the ads SDK only starts if the user taps the
-  rewarded offer. If either changes, the policy must change with it.
+- The contact address on every page is `info@bytedroidstudio.com`. Play requires a
+  working one.
+- Re-read `privacy.html` against what the app actually does at each release. It
+  was last brought up to date on 15 October 2026 for 1.3.0: optional Sync to the
+  user's own iCloud or Google Drive, and what Google sign-in shares. The app has
+  no ads any more (the ads SDK was removed), so the `app-ads.txt` notes above no
+  longer matter; the file is harmless to keep.
 - The date at the top of `privacy.html` and `terms.html` should be updated
   whenever their contents change.
